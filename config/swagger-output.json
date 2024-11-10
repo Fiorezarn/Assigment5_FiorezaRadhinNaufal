@@ -1,0 +1,405 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Assignment 5",
+    "version": "1.0.0",
+    "description": "Assignment 5",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/customers": {
+      "get": {
+        "tags": ["Customer"],
+        "summary": "Get All Customer",
+        "description": "Get All Customer",
+        "operationId": "getAllCustomer",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": ["Customer"],
+        "summary": "Create Customer",
+        "description": "Create Customer",
+        "operationId": "createCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "birth": {
+                    "type": "string",
+                    "example": "2002-02-19"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "reza"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": "male"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "Naufal"
+                  }
+                }
+              },
+              "examples": {
+                "Create Customer": {
+                  "value": {
+                    "birth": "2002-02-19",
+                    "firstName": "reza",
+                    "gender": "male",
+                    "lastName": "Naufal"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/customers/21": {
+      "put": {
+        "tags": ["Customer"],
+        "summary": "Update Customer",
+        "description": "Update Customer",
+        "operationId": "updateCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "birth": {
+                    "type": "string",
+                    "example": "2002-02-19"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "rafal"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": "male"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "alqurni"
+                  }
+                }
+              },
+              "examples": {
+                "Update Customer": {
+                  "value": {
+                    "birth": "2002-02-19",
+                    "firstName": "rafal",
+                    "gender": "male",
+                    "lastName": "alqurni"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/customers/1": {
+      "patch": {
+        "tags": ["Customer"],
+        "summary": "Delete Customer",
+        "description": "Delete Customer",
+        "operationId": "deleteCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete Customer": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/customers/1/addresses": {
+      "get": {
+        "tags": ["Customer"],
+        "summary": "Get Customer Address",
+        "description": "Get Customer Address",
+        "operationId": "getCustomerAddress",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": ["Address"],
+        "summary": "Create Address",
+        "description": "Create Address",
+        "operationId": "createAddress",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "example": "Tangerang Selatan"
+                  },
+                  "custId": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "postalCode": {
+                    "type": "string",
+                    "example": "15418"
+                  },
+                  "street": {
+                    "type": "string",
+                    "example": "cattleya residence"
+                  }
+                }
+              },
+              "examples": {
+                "Create Address": {
+                  "value": {
+                    "city": "Tangerang Selatan",
+                    "custId": 2,
+                    "postalCode": "15418",
+                    "street": "cattleya residence"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/address": {
+      "get": {
+        "tags": ["Address"],
+        "summary": "Get All Address",
+        "description": "Get All Address",
+        "operationId": "getAllAddress",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/address/1": {
+      "delete": {
+        "tags": ["Address"],
+        "summary": "Delete Address",
+        "description": "Delete Address",
+        "operationId": "deleteAddress",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/address/2": {
+      "put": {
+        "tags": ["Address"],
+        "summary": "Update Address",
+        "description": "Update Address",
+        "operationId": "updateAddress",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "example": "Tangerang Selatan"
+                  },
+                  "custId": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "postalCode": {
+                    "type": "string",
+                    "example": "15418"
+                  },
+                  "street": {
+                    "type": "string",
+                    "example": "cattleya mawar"
+                  }
+                }
+              },
+              "examples": {
+                "Update Address": {
+                  "value": {
+                    "city": "Tangerang Selatan",
+                    "custId": 2,
+                    "postalCode": "15418",
+                    "street": "cattleya mawar"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/order": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get All Order",
+        "description": "Get All Order",
+        "operationId": "getAllOrder",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/customers/1/orders": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Create Order",
+        "description": "Create Order",
+        "operationId": "createOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "completed"
+                  },
+                  "totalAmount": {
+                    "type": "number",
+                    "example": 5000
+                  }
+                }
+              },
+              "examples": {
+                "Create Order": {
+                  "value": {
+                    "status": "completed",
+                    "totalAmount": 5000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/order/1": {
+      "put": {
+        "tags": ["Order"],
+        "summary": "Update Order",
+        "description": "Update Order",
+        "operationId": "updateOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "pending"
+                  },
+                  "totalAmount": {
+                    "type": "number",
+                    "example": 5000
+                  }
+                }
+              },
+              "examples": {
+                "Update Order": {
+                  "value": {
+                    "status": "pending",
+                    "totalAmount": 5000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/order/2": {
+      "delete": {
+        "tags": ["Order"],
+        "summary": "Delete Order",
+        "description": "Delete Order",
+        "operationId": "deleteOrder",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Customer"
+    },
+    {
+      "name": "Address"
+    },
+    {
+      "name": "Order"
+    }
+  ]
+}
