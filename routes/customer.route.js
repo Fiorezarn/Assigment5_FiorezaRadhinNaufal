@@ -6,13 +6,19 @@ const {
   deleteCustomer,
   getCustomeraddress,
   getCustomerOrder,
+  getCustomerById,
 } = require("@/controllers/customer.controller");
 const { createOrder } = require("@/controllers/order.controller");
+const {
+  bodyvalidation,
+  checkDuplicates,
+} = require("@/validations/customer.validation");
 const express = require("express");
 const router = express.Router();
 
 router.get("/", getAllCustomers);
-router.post("/", createCustomer);
+router.post("/", bodyvalidation, checkDuplicates, createCustomer);
+router.get("/:id", getCustomerById);
 router.put("/:id", updateCustomer);
 router.patch("/:id", deleteCustomer);
 router.get("/:id/addresses", getCustomeraddress);

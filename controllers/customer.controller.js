@@ -31,6 +31,19 @@ const findOneCustomer = async (id) => {
   }
 };
 
+const getCustomerById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const customer = await findOneCustomer(id);
+    if (!customer) {
+      return errorClientResponse(res, "customer not found", 404);
+    }
+    return successResponseData(res, "success get customer", customer, 200);
+  } catch (error) {
+    return errorServerResponse(res, error.message);
+  }
+};
+
 const getCustomeraddress = async (req, res) => {
   try {
     const { id } = req.params;
@@ -129,4 +142,5 @@ module.exports = {
   deleteCustomer,
   getCustomeraddress,
   getCustomerOrder,
+  getCustomerById,
 };

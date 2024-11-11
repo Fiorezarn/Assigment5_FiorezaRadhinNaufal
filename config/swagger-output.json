@@ -1,10 +1,13 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Assignment 5",
+    "title": "Customer Management API",
     "version": "1.0.0",
-    "description": "Assignment 5",
-    "contact": {}
+    "description": "This API provides endpoints to manage customer data, including creating, updating, retrieving, and deleting customer information and associated orders.",
+    "contact": {
+      "name": "API Support",
+      "email": "fiorezarn@gmail.com"
+    }
   },
   "servers": [
     {
@@ -20,7 +23,10 @@
         "operationId": "getAllCustomer",
         "responses": {
           "200": {
-            "description": ""
+            "description": "Successful response"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected server issue"
           }
         }
       },
@@ -61,6 +67,29 @@
                     "gender": "male",
                     "lastName": "Naufal"
                   }
+                },
+                "Missing Required Field": {
+                  "value": {
+                    "birth": "2002-02-19",
+                    "firstName": "reza",
+                    "gender": "male"
+                  }
+                },
+                "Invalid Date Format": {
+                  "value": {
+                    "birth": "19-02-2002",
+                    "firstName": "reza",
+                    "gender": "male",
+                    "lastName": "Naufal"
+                  }
+                },
+                "Unacceptable Gender Value": {
+                  "value": {
+                    "birth": "2002-02-19",
+                    "firstName": "reza",
+                    "gender": "unknown",
+                    "lastName": "Naufal"
+                  }
                 }
               }
             }
@@ -68,17 +97,93 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "Customer successfully created"
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid request body"
+          },
+          "409": {
+            "description": "Conflict - Customer already exists"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected issue"
           }
         }
       }
     },
-    "/customers/21": {
+    "/customers/{id}": {
+      "get": {
+        "tags": ["Customer"],
+        "summary": "Get Customer by ID",
+        "description": "Retrieve a specific customer by their ID",
+        "operationId": "getCustomerById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the customer to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success - Customer found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "success get customer",
+                  "data": {
+                    "id": "12345",
+                    "firstName": "reza",
+                    "lastName": "Naufal",
+                    "birth": "2002-02-19",
+                    "gender": "male"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Customer not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "customer not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected issue",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Internal server error"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "tags": ["Customer"],
         "summary": "Update Customer",
-        "description": "Update Customer",
+        "description": "Update customer details by ID",
         "operationId": "updateCustomer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the customer to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -118,52 +223,159 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "Customer successfully updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "success update customer",
+                  "data": {
+                    "id": "12345",
+                    "birth": "2002-02-19",
+                    "firstName": "rafal",
+                    "gender": "male",
+                    "lastName": "alqurni"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid request body"
+          },
+          "404": {
+            "description": "Not Found - Customer not found"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected issue"
           }
         }
-      }
-    },
-    "/customers/1": {
+      },
       "patch": {
         "tags": ["Customer"],
         "summary": "Delete Customer",
-        "description": "Delete Customer",
+        "description": "Delete a customer by ID",
         "operationId": "deleteCustomer",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "examples": {
-                "Delete Customer": {
-                  "value": ""
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the customer to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer successfully deleted",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "customer successfully deleted"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Customer not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "customer not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected issue",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Internal server error"
                 }
               }
             }
           }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
         }
       }
     },
-    "/customers/1/addresses": {
+    "/customers/{id}/addresses": {
       "get": {
         "tags": ["Customer"],
         "summary": "Get Customer Address",
-        "description": "Get Customer Address",
+        "description": "Get the address of a specific customer by their ID",
         "operationId": "getCustomerAddress",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the customer whose address is to be retrieved",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Success - Customer address found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "success get customer address",
+                  "data": {
+                    "id": "12345",
+                    "addresses": [
+                      {
+                        "street": "cattleya residence",
+                        "city": "Tangerang Selatan",
+                        "postalCode": "15418"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Customer or address not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "customer or address not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected issue",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Internal server error"
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "tags": ["Address"],
+        "tags": ["Customer"],
         "summary": "Create Address",
-        "description": "Create Address",
+        "description": "Create an address for a specific customer",
         "operationId": "createAddress",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the customer to create the address for",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -173,10 +385,6 @@
                   "city": {
                     "type": "string",
                     "example": "Tangerang Selatan"
-                  },
-                  "custId": {
-                    "type": "number",
-                    "example": 2
                   },
                   "postalCode": {
                     "type": "string",
@@ -192,7 +400,6 @@
                 "Create Address": {
                   "value": {
                     "city": "Tangerang Selatan",
-                    "custId": 2,
                     "postalCode": "15418",
                     "street": "cattleya residence"
                   }
@@ -203,11 +410,127 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "Address successfully created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "success create address",
+                  "data": {
+                    "id": "12345",
+                    "city": "Tangerang Selatan",
+                    "postalCode": "15418",
+                    "street": "cattleya residence"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid data"
+          },
+          "404": {
+            "description": "Not Found - Customer not found"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected issue"
           }
         }
       }
     },
+    "/customers/{id}/orders": {
+      "post": {
+        "tags": ["Customer"],
+        "summary": "Create Order",
+        "description": "Create an order for a specific customer",
+        "operationId": "createOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the customer to create the order for",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "completed"
+                  },
+                  "totalAmount": {
+                    "type": "number",
+                    "example": 5000
+                  }
+                }
+              },
+              "examples": {
+                "Create Order": {
+                  "value": {
+                    "status": "completed",
+                    "totalAmount": 5000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order successfully created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "success create order",
+                  "data": {
+                    "id": "order123",
+                    "status": "completed",
+                    "totalAmount": 5000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid data",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Invalid request data"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Customer not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "customer not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected issue",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Internal server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
     "/address": {
       "get": {
         "tags": ["Address"],
@@ -297,46 +620,7 @@
         }
       }
     },
-    "/customers/1/orders": {
-      "post": {
-        "tags": ["Order"],
-        "summary": "Create Order",
-        "description": "Create Order",
-        "operationId": "createOrder",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "example": "completed"
-                  },
-                  "totalAmount": {
-                    "type": "number",
-                    "example": 5000
-                  }
-                }
-              },
-              "examples": {
-                "Create Order": {
-                  "value": {
-                    "status": "completed",
-                    "totalAmount": 5000
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      }
-    },
+
     "/order/1": {
       "put": {
         "tags": ["Order"],
