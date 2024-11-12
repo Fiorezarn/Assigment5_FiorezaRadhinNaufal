@@ -11,7 +11,7 @@ const getAllOrders = async (req, res) => {
     const orders = await Order.findAll({
       include: {
         model: Customer,
-        as: "customer",
+        as: "Customer",
       },
     });
     return successResponseData(res, "Success get all orders", orders);

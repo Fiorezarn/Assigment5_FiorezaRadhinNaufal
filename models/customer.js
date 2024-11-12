@@ -10,15 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Customer.hasMany(models.Address, {
         foreignKey: "ad_cs_id",
-        as: "addresses",
+        as: "Address",
       });
       Customer.hasMany(models.Order, {
         foreignKey: "or_cs_id",
-        as: "orders",
+        as: "Order",
       });
       Customer.hasMany(models.Contact, {
         foreignKey: "ct_cs_id",
-        as: "contacts",
+        as: "Contact",
       });
     }
   }

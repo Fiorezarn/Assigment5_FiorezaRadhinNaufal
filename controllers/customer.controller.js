@@ -9,10 +9,16 @@ const { Customer, Address, Order } = require("@/models");
 const getAllCustomers = async (req, res) => {
   try {
     const customers = await Customer.findAll({
-      include: {
-        model: Address,
-        as: "addresses",
-      },
+      include: [
+        {
+          model: Address,
+          as: "Address",
+        },
+        {
+          model: Order,
+          as: "Order",
+        },
+      ],
     });
     return successResponseData(res, "success get all customers", customers);
   } catch (error) {

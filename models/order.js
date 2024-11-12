@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Relasi: Order terkait ke satu Customer
-      Order.belongsTo(models.Customer, {
+      models.Order.belongsTo(models.Customer, {
         foreignKey: "or_cs_id",
-        as: "customer",
+        as: "Customer",
       });
     }
   }

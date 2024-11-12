@@ -23,10 +23,60 @@
         "operationId": "getAllCustomer",
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "customerId": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "firstName": {
+                        "type": "string",
+                        "example": "Reza"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "Naufal"
+                      },
+                      "gender": {
+                        "type": "string",
+                        "example": "male"
+                      },
+                      "birth": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2002-02-19"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error - Unexpected server issue"
+            "description": "Internal Server Error - Unexpected server issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Unexpected server issue"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -41,54 +91,52 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "birth": {
-                    "type": "string",
-                    "example": "2002-02-19"
-                  },
                   "firstName": {
                     "type": "string",
-                    "example": "reza"
+                    "example": "Reza"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "Naufal"
                   },
                   "gender": {
                     "type": "string",
                     "example": "male"
                   },
-                  "lastName": {
+                  "birth": {
                     "type": "string",
-                    "example": "Naufal"
-                  }
-                }
-              },
-              "examples": {
-                "Create Customer": {
-                  "value": {
-                    "birth": "2002-02-19",
-                    "firstName": "reza",
-                    "gender": "male",
-                    "lastName": "Naufal"
+                    "format": "date",
+                    "example": "2002-02-19"
                   }
                 },
-                "Missing Required Field": {
-                  "value": {
-                    "birth": "2002-02-19",
-                    "firstName": "reza",
-                    "gender": "male"
-                  }
-                },
-                "Invalid Date Format": {
-                  "value": {
-                    "birth": "19-02-2002",
-                    "firstName": "reza",
-                    "gender": "male",
-                    "lastName": "Naufal"
-                  }
-                },
-                "Unacceptable Gender Value": {
-                  "value": {
-                    "birth": "2002-02-19",
-                    "firstName": "reza",
-                    "gender": "unknown",
-                    "lastName": "Naufal"
+                "examples": {
+                  "Create Customer": {
+                    "value": {
+                      "firstName": "Reza",
+                      "lastName": "Naufal",
+                      "gender": "male",
+                      "birth": "2002-02-19"
+                    }
+                  },
+                  "Missing Required Field": {
+                    "value": {
+                      "firstName": "Reza",
+                      "gender": "male"
+                    }
+                  },
+                  "Invalid Date Format": {
+                    "value": {
+                      "firstName": "Reza",
+                      "gender": "male",
+                      "birth": "19-02-2002"
+                    }
+                  },
+                  "Unacceptable Gender Value": {
+                    "value": {
+                      "firstName": "Reza",
+                      "gender": "unknown",
+                      "birth": "2002-02-19"
+                    }
                   }
                 }
               }
@@ -97,16 +145,106 @@
         },
         "responses": {
           "200": {
-            "description": "Customer successfully created"
+            "description": "Customer successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Customer successfully created"
+                    },
+                    "customer": {
+                      "type": "object",
+                      "properties": {
+                        "customerId": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "Reza"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "Naufal"
+                        },
+                        "gender": {
+                          "type": "string",
+                          "example": "male"
+                        },
+                        "birth": {
+                          "type": "string",
+                          "format": "date",
+                          "example": "2002-02-19"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request - Missing or invalid request body"
+            "description": "Bad Request - Missing or invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Missing or invalid request body"
+                    }
+                  }
+                }
+              }
+            }
           },
           "409": {
-            "description": "Conflict - Customer already exists"
+            "description": "Conflict - Customer already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Conflict"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Customer already exists"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error - Unexpected issue"
+            "description": "Internal Server Error - Unexpected issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Unexpected issue"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -216,6 +354,21 @@
                     "gender": "male",
                     "lastName": "alqurni"
                   }
+                },
+                "Invalid Birth Date": {
+                  "value": {
+                    "birth": "02/19/2002",
+                    "firstName": "rafal",
+                    "gender": "male",
+                    "lastName": "alqurni"
+                  }
+                },
+                "Missing Last Name": {
+                  "value": {
+                    "birth": "2002-02-19",
+                    "firstName": "rafal",
+                    "gender": "male"
+                  }
                 }
               }
             }
@@ -240,13 +393,34 @@
             }
           },
           "400": {
-            "description": "Bad Request - Missing or invalid request body"
+            "description": "Bad Request - Missing or invalid request body",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Invalid input data"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found - Customer not found"
+            "description": "Not Found - Customer not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "customer not found"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error - Unexpected issue"
+            "description": "Internal Server Error - Unexpected issue",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Internal server error"
+                }
+              }
+            }
           }
         }
       },
@@ -403,6 +577,19 @@
                     "postalCode": "15418",
                     "street": "cattleya residence"
                   }
+                },
+                "Missing City": {
+                  "value": {
+                    "postalCode": "15418",
+                    "street": "cattleya residence"
+                  }
+                },
+                "Invalid Postal Code": {
+                  "value": {
+                    "city": "Tangerang Selatan",
+                    "postalCode": "abc123",
+                    "street": "cattleya residence"
+                  }
                 }
               }
             }
@@ -426,13 +613,34 @@
             }
           },
           "400": {
-            "description": "Bad Request - Missing or invalid data"
+            "description": "Bad Request - Missing or invalid data",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Invalid input data"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found - Customer not found"
+            "description": "Not Found - Customer not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "customer not found"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error - Unexpected issue"
+            "description": "Internal Server Error - Unexpected issue",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Internal server error"
+                }
+              }
+            }
           }
         }
       }
@@ -530,7 +738,6 @@
         }
       }
     },
-
     "/address": {
       "get": {
         "tags": ["Address"],
@@ -539,30 +746,134 @@
         "operationId": "getAllAddress",
         "responses": {
           "200": {
-            "description": ""
+            "description": "Addresses retrieved successfully.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "success get addresses",
+                  "data": [
+                    {
+                      "id": "12345",
+                      "city": "Tangerang Selatan",
+                      "postalCode": "15418",
+                      "street": "cattleya residence"
+                    },
+                    {
+                      "id": "12346",
+                      "city": "Jakarta Selatan",
+                      "postalCode": "12110",
+                      "street": "sudirman street"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. There was an error retrieving the address data.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Internal server error"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/address/1": {
+    "/address/{id}": {
       "delete": {
         "tags": ["Address"],
         "summary": "Delete Address",
-        "description": "Delete Address",
+        "description": "Delete an address by ID",
         "operationId": "deleteAddress",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the address to delete"
+          }
+        ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Address deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Address deleted successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Address not found. The specified ID does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Address not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "The address with the specified ID does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. There was an error deleting the address data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "There was an error deleting the address data."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
-      }
-    },
-    "/address/2": {
+      },
       "put": {
         "tags": ["Address"],
         "summary": "Update Address",
-        "description": "Update Address",
+        "description": "Update an address by ID",
         "operationId": "updateAddress",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the address to update"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -602,7 +913,60 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "Address updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Address updated successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Address not found. The specified ID does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Address not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "The address with the specified ID does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. There was an error updating the address data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "There was an error updating the address data."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -610,23 +974,95 @@
     "/order": {
       "get": {
         "tags": ["Order"],
-        "summary": "Get All Order",
-        "description": "Get All Order",
+        "summary": "Get All Orders",
+        "description": "Retrieve a list of all orders",
         "operationId": "getAllOrder",
         "responses": {
           "200": {
-            "description": ""
+            "description": "List of all orders retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "orders": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "orderId": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "customerName": {
+                            "type": "string",
+                            "example": "John Doe"
+                          },
+                          "totalAmount": {
+                            "type": "number",
+                            "example": 150.75
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Completed"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-11-12T10:20:30Z"
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Orders retrieved successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. There was an error retrieving the orders.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "There was an error retrieving the order data."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-
-    "/order/1": {
+    "/order/{id}": {
       "put": {
         "tags": ["Order"],
         "summary": "Update Order",
-        "description": "Update Order",
+        "description": "Update an order by ID",
         "operationId": "updateOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the order to update"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -656,21 +1092,207 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "Order updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Order updated successfully."
+                    },
+                    "order": {
+                      "type": "object",
+                      "properties": {
+                        "orderId": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "pending"
+                        },
+                        "totalAmount": {
+                          "type": "number",
+                          "example": 5000
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2023-11-12T10:20:30Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found. The specified ID does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Order not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "The order with the specified ID does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. There was an error updating the order data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "There was an error updating the order data."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
-      }
-    },
-    "/order/2": {
+      },
       "delete": {
         "tags": ["Order"],
         "summary": "Delete Order",
-        "description": "Delete Order",
+        "description": "Delete an order by ID",
         "operationId": "deleteOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the order to delete"
+          }
+        ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Order deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Order deleted successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found. The specified ID does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Order not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "The order with the specified ID does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. There was an error deleting the order data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "There was an error deleting the order data."
+                    }
+                  }
+                }
+              }
+            }
           }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "cs_id": { "type": "integer" },
+          "cs_firstname": { "type": "string" },
+          "cs_lastname": { "type": "string" },
+          "cs_gender": { "type": "string" },
+          "cs_birth": { "type": "string", "format": "date" },
+          "cs_status": { "type": "boolean" },
+          "is_active": { "type": "boolean" }
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "ct_id": { "type": "integer" },
+          "ct_phoneNumber": { "type": "string" },
+          "ct_email": { "type": "string" },
+          "ct_cs_id": { "type": "integer" },
+          "ct_type": { "type": "string", "enum": ["primary", "secondary"] }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "ad_id": { "type": "integer" },
+          "ad_street": { "type": "string" },
+          "ad_city": { "type": "string" },
+          "ad_postalCode": { "type": "string" },
+          "ad_cs_id": { "type": "integer" }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "or_id": { "type": "integer" },
+          "or_date": { "type": "string", "format": "date-time" },
+          "or_totalAmount": { "type": "number" },
+          "or_status": {
+            "type": "string",
+            "enum": ["pending", "completed", "canceled"]
+          },
+          "or_cs_id": { "type": "integer" }
         }
       }
     }

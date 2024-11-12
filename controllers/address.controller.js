@@ -11,10 +11,15 @@ const getAllAddresses = async (req, res) => {
     const addresses = await Address.findAll({
       include: {
         model: Customer,
-        as: "customer",
+        as: "Customer",
       },
     });
-    return successResponseData(res, "Success get all addresses", addresses);
+    return successResponseData(
+      res,
+      "Success get all addresses",
+      addresses,
+      200
+    );
   } catch (error) {
     return errorServerResponse(res, error.message);
   }
