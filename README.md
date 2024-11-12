@@ -35,7 +35,7 @@ This project is a backend RESTful API built with Node.js and Express.js, utilizi
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Fiorezarn/Assigment5_FiorezaRadhinNaufal.git
+   git clone https://github.com/rifqi142/assignment5_muhrifqis
    cd assignment5_muhrifqis
    ```
 2. **Install the dependencies**:
@@ -127,25 +127,17 @@ The API is documented with Swagger. You can access the documentation at /api-doc
 This project utilizes the following dependencies:
 
 - Express - Fast, unopinionated, minimalist web framework for Node.js.
-- Sequelize - Promise-based ORM for Node.js and MySQL.
-- @faker-js/faker - Generate massive amounts of fake data.
-- Axios - Promise-based HTTP client.
-- Bcrypt - Password hashing library.
-- Body-parser - Express.js middleware for parsing HTTP request bodies.
-- CORS - Middleware to enable CORS with various options.
-- Dotenv - Loads environment variables from .env file.
-- Express-list-endpoints - Lists all endpoints of an Express.js application.
+- Sequelize - Promise-based ORM for Node.js and PostgreSQL.
+- @sequelize/postgres - PostgreSQL dialect for Sequelize.
 - Joi - Data validation library for JavaScript.
-- Module-alias - Creates aliases of directories and files.
+- Swagger - Tools for documenting APIs.
+- CORS - Middleware to enable CORS with various options.
+- dotenv - Loads environment variables from .env file.
 - Nodemon - Utility to automatically restart the server for changes.
-- Postman2openapi - Convert Postman collections to OpenAPI definitions.
-- Sequelize-cli - Command line interface for Sequelize.
-- Swagger-jsdoc - Auto-generates API documentation for Express.js applications.
-- Swagger-ui-express - Serve auto-generated API documentation for Express.js applications.
 
 ## 🧑🏻‍💻 Author
 
-- [@Fioreza Radhin Naufal](https://github.com/Fiorezarn)
+- [@Fioreza Radhin Naufal](https://github.com/rifqi142)
 
 ## 📄 License
 
