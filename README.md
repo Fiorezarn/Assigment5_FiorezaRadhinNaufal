@@ -1,10 +1,10 @@
-# 🛠️ User Management Backend API
+# 💻 Customer Management Backend API
 
-This project is a backend RESTful API built with Node.js and Express.js, utilizing Sequelize ORM to interact with a PostgreSQL database. The API manages user-related data, including Customers, their Addresses, Contacts, and Orders. The database schema consists of four main tables: `customers`, `addresses`, `contacts`, and `orders`, each with specific relationships and fields.
+This project is a Node.js and Express.js-based RESTful API, utilizing Sequelize ORM to interact with a PostgreSQL database. The API manages user-related data, including customers, their addresses, contacts, and orders. The database schema consists of four main tables: `customers`, `addresses`, `contacts`, and `orders`, each with specific relationships and fields.
 
 ## 📜 Preview of the API Documentation
 
-![Preview](./assets/img-api-docs.png)
+![Preview](https://github.com/Fiorezarn/Assigment5_FiorezaRadhinNaufal/blob/main/assets/Screenshot%202024-11-12%20232538.png)
 
 ## 📋 Table of Contents
 
@@ -14,6 +14,8 @@ This project is a backend RESTful API built with Node.js and Express.js, utilizi
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Dependencies](#dependencies)
+- [Author](#author)
+- [License](#license)
 
 ---
 
@@ -35,8 +37,8 @@ This project is a backend RESTful API built with Node.js and Express.js, utilizi
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/rifqi142/assignment5_muhrifqis
-   cd assignment5_muhrifqis
+   git clone https://github.com/Fiorezarn/Assigment5_FiorezaRadhinNaufal
+   cd Assigment5_FiorezaRadhinNaufal
    ```
 2. **Install the dependencies**:
    ```bash
@@ -63,11 +65,11 @@ This project is a backend RESTful API built with Node.js and Express.js, utilizi
     npm start
    ```
 6. **Access the API**:
-   - Open your browser and navigate to `http://localhost:8080/api-docs` to view the Swagger UI documentation.
+   - Open your browser and navigate to `http://localhost:3000/api-docs` to view the Swagger UI documentation.
 
 ---
 
-## 🌐 Environment Variables
+## 🌎 Environment Variables
 
 This project uses the following environment variables:
 
@@ -127,13 +129,21 @@ The API is documented with Swagger. You can access the documentation at /api-doc
 This project utilizes the following dependencies:
 
 - Express - Fast, unopinionated, minimalist web framework for Node.js.
-- Sequelize - Promise-based ORM for Node.js and PostgreSQL.
-- @sequelize/postgres - PostgreSQL dialect for Sequelize.
-- Joi - Data validation library for JavaScript.
-- Swagger - Tools for documenting APIs.
+- Sequelize - Promise-based ORM for Node.js and MySQL.
+- @faker-js/faker - Generate massive amounts of fake data.
+- Axios - Promise-based HTTP client.
+- Bcrypt - Password hashing library.
+- Body-parser - Express.js middleware for parsing HTTP request bodies.
 - CORS - Middleware to enable CORS with various options.
-- dotenv - Loads environment variables from .env file.
+- Dotenv - Loads environment variables from .env file.
+- Express-list-endpoints - Lists all endpoints of an Express.js application.
+- Joi - Data validation library for JavaScript.
+- Module-alias - Creates aliases of directories and files.
 - Nodemon - Utility to automatically restart the server for changes.
+- Postman2openapi - Convert Postman collections to OpenAPI definitions.
+- Sequelize-cli - Command line interface for Sequelize.
+- Swagger-jsdoc - Auto-generates API documentation for Express.js applications.
+- Swagger-ui-express - Serve auto-generated API documentation for Express.js applications.
 
 ## 🧑🏻‍💻 Author
 
